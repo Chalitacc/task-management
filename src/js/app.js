@@ -1,4 +1,8 @@
+import addTasks from "./addTasks";
+import app, { database } from "./firebaseConfig";
 import { closeModal, openModal } from "./modal";
+
+console.log(app, database);
 
 // SELECTING DOM ELEMENTS
 
@@ -25,4 +29,15 @@ const formSubmissionFeedback = document.querySelector(
 document.addEventListener("DOMContentLoaded", () => {
   openModal(formModal, openModalButton);
   closeModal(formModal, closeModalButton);
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  addTasks(
+    titleInput.value,
+    dateInput.value,
+    timeInput.value,
+    cateogrySelect.value,
+    prioritySelect.value
+  ); // do not trim them yet as we want to implement validation, as if it is empty it wont pass the validation
 });
