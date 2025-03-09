@@ -1,6 +1,7 @@
 import addTasks from "./addTasks";
 import app, { database } from "./firebaseConfig";
 import { closeModal, openModal } from "./modal";
+import renderTasks from "./renderTasks";
 
 console.log(app, database);
 
@@ -29,6 +30,7 @@ const formSubmissionFeedback = document.querySelector(
 document.addEventListener("DOMContentLoaded", () => {
   openModal(formModal, openModalButton);
   closeModal(formModal, closeModalButton);
+  renderTasks(); // when dom is loaded you will be able to see it right away
 });
 
 form.addEventListener("submit", (e) => {
@@ -40,4 +42,5 @@ form.addEventListener("submit", (e) => {
     cateogrySelect.value,
     prioritySelect.value
   ); // do not trim them yet as we want to implement validation, as if it is empty it wont pass the validation
+  renderTasks(); // call it here to so that it is connected to the submit button
 });
